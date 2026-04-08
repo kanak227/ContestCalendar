@@ -50,22 +50,29 @@ def save_events(events):
         json.dump(events, f, indent=4)
 
 
-# 🔔 EVENT TEMPLATE (NO timezone field ❌)
-def build_event(summary, description, start, end):
-    return {
+# 🔔 EVENT TEMPLATE
+def build_event(summary, description, start, end, color_id=None):
+    event = {
         'summary': summary,
         'description': description,
-        'start': {'dateTime': start.isoformat()},
-        'end': {'dateTime': end.isoformat()},
+        'start': {
+            'dateTime': start.isoformat(),
+            'timeZone': 'Asia/Kolkata'
+        },
+        'end': {
+            'dateTime': end.isoformat(),
+            'timeZone': 'Asia/Kolkata'
+        },
         'reminders': {
             'useDefault': False,
             'overrides': [
-                {'method': 'popup', 'minutes': 1440},
-                {'method': 'popup', 'minutes': 60},
-                {'method': 'popup', 'minutes': 15},
+                {'method': 'popup', 'minutes': 10},
             ],
         },
     }
+    if color_id:
+        event['colorId'] = color_id
+    return event
 
 
 # 🔵 CODEFORCES
@@ -204,11 +211,29 @@ def main():
     )
 
     for c in all_contests:
-        if c['id'] in saved:
-            print(f"⏭️ Skip: {c['name']}")
-            continue
+        # 🎨 Assign colors based on platform
+        color_id = None
+        if c['id'].startswith('cf_'):
+            color_id = '3'   # Blueberry (Codeforces)
+        elif c['id'].startswith('lc_'):
+            color_id = '5'   # Banana (LeetCode)
+        elif c['id'].startswith('cc_'):
+            color_id = '7'  # Tomato (CodeChef)
 
-        event = build_event(c['name'], c['url'], c['start'], c['end'])
+        event = build_event(c['name'], c['url'], c['start'], c['end'], color_id)
+        
+        if c['id'] in saved:
+            event_id = saved[c['id']]
+            try:
+                service.events().update(
+                    calendarId='primary',
+                    eventId=event_id,
+                    body=event
+                ).execute()
+                print(f"🔄 Updated: {c['name']} ({c['start'].strftime('%d %b %H:%M')})")
+            except Exception as e:
+                print(f"❌ Failed to update {c['name']}: {e}")
+            continue
 
         created = service.events().insert(
             calendarId='primary',
@@ -216,7 +241,7 @@ def main():
         ).execute()
 
         saved[c['id']] = created['id']
-        print(f"✅ Added: {c['name']}")
+        print(f"✅ Added: {c['name']} ({c['start'].strftime('%d %b %H:%M')})")
 
     save_events(saved)
 
