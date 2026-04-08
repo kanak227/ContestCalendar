@@ -1,0 +1,15 @@
+# Virtual environment
+.venv/
+venv/
+
+# Secrets & credentials
+credentials.json
+token.json
+
+# Generated data
+data/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
