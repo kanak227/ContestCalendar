@@ -8,6 +8,7 @@ token.json
 
 # Generated data
 data/
+!data/events.json
 
 # Python cache
 __pycache__/
