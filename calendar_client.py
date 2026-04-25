@@ -1,6 +1,7 @@
 import os
 import logging
 from google.oauth2.credentials import Credentials
+from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 
@@ -20,12 +21,21 @@ def authenticate(credentials_path='credentials.json', token_path='token.json'):
             logger.error(f"Failed to load token: {e}")
 
     if not creds or not creds.valid:
-        if not os.path.exists(credentials_path):
-            raise FileNotFoundError(f"Credentials file not found at {credentials_path}")
-        
-        flow = InstalledAppFlow.from_client_secrets_file(credentials_path, SCOPES)
-        creds = flow.run_local_server(port=0)
+        if creds and creds.expired and creds.refresh_token:
+            try:
+                creds.refresh(Request())
+            except Exception as e:
+                logger.error(f"Failed to refresh token: {e}")
+                creds = None
 
+        if not creds or not creds.valid:
+            if not os.path.exists(credentials_path):
+                raise FileNotFoundError(f"Credentials file not found at {credentials_path}")
+            
+            flow = InstalledAppFlow.from_client_secrets_file(credentials_path, SCOPES)
+            creds = flow.run_local_server(port=0)
+
+        # Save the credentials for the next run
         with open(token_path, 'w') as token:
             token.write(creds.to_json())
 
