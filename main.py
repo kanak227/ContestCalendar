@@ -2,7 +2,9 @@ import json
 import os
 import logging
 import argparse
-from datetime import datetime
+import hashlib
+from datetime import datetime, timezone
+from googleapiclient.errors import HttpError
 
 from scrapers import fetch_codeforces, fetch_leetcode, fetch_codechef
 from calendar_client import authenticate, get_calendar_service, build_event
@@ -40,6 +42,78 @@ def save_events(events):
     except Exception as e:
         logger.error(f"Failed to save events: {e}")
 
+def generate_google_event_id(contest_id):
+    """
+    Generate a deterministic, valid Google Calendar event ID from a contest ID.
+    Google Calendar event ID requirements:
+    - Characters allowed: lowercase letters a-v, digits 0-9, and characters -_ (hyphens, underscores).
+    - Length: 5 to 1024 characters.
+    We use md5 hash of contest_id which produces a 32-character hex string (0-9, a-f).
+    Since 'f' is within 'v', this is 100% compliant.
+    """
+    return hashlib.md5(contest_id.encode('utf-8')).hexdigest()
+
+def cleanup_saved_events(saved, service):
+    """
+    Remove past events from saved events dict and normalize values to dict format:
+    {"event_id": str, "end": str (ISO 8601)}
+    """
+    now = datetime.now(timezone.utc)
+    updated_saved = {}
+    changed = False
+
+    for contest_id, value in list(saved.items()):
+        event_id = None
+        end_time_str = None
+        
+        if isinstance(value, str):
+            # Legacy format: "contest_id": "event_id"
+            event_id = value
+            # Fetch from calendar to get end time and verify existence
+            try:
+                event = service.events().get(calendarId='primary', eventId=event_id).execute()
+                end_time_str = event.get('end', {}).get('dateTime') or event.get('end', {}).get('date')
+                changed = True
+            except Exception as e:
+                # If it doesn't exist or we can't fetch it, remove it
+                logger.info(f"Removing legacy event {contest_id} ({event_id}) because it could not be fetched: {e}")
+                changed = True
+                continue
+        elif isinstance(value, dict):
+            # New format: "contest_id": {"event_id": "...", "end": "..."}
+            event_id = value.get("event_id")
+            end_time_str = value.get("end")
+        
+        if not event_id or not end_time_str:
+            changed = True
+            continue
+
+        try:
+            # Parse the end time.
+            if end_time_str.endswith('Z'):
+                end_time_str_parsed = end_time_str[:-1] + '+00:00'
+            else:
+                end_time_str_parsed = end_time_str
+            end_dt = datetime.fromisoformat(end_time_str_parsed)
+            if end_dt.tzinfo is None:
+                end_dt = end_dt.replace(tzinfo=timezone.utc)
+            
+            if end_dt < now:
+                logger.info(f"Clearing past event: {contest_id} (ended at {end_time_str})")
+                changed = True
+                continue
+            else:
+                updated_saved[contest_id] = {
+                    "event_id": event_id,
+                    "end": end_time_str
+                }
+        except Exception as e:
+            logger.warning(f"Failed to parse end time '{end_time_str}' for {contest_id}, removing: {e}")
+            changed = True
+            continue
+
+    return updated_saved, changed
+
 def get_platform_color(contest_id):
     """Get color ID based on the platform."""
     if contest_id.startswith('cf_'):
@@ -68,6 +142,10 @@ def main():
 
     saved = load_saved_events()
     
+    # Clean up and normalize saved events
+    logger.info("Cleaning up and normalizing saved events...")
+    saved, cleanup_changed = cleanup_saved_events(saved, service)
+    
     logger.info("Fetching contests...")
     all_contests = (
         fetch_codeforces(days_limit=args.days) +
@@ -79,10 +157,21 @@ def main():
 
     for c in all_contests:
         color_id = get_platform_color(c['id'])
+        
+        # Check if we already have a saved event ID for this contest
+        if c['id'] in saved:
+            if isinstance(saved[c['id']], dict):
+                event_id = saved[c['id']]['event_id']
+            else:
+                event_id = saved[c['id']]
+        else:
+            # Generate deterministic ID
+            event_id = generate_google_event_id(c['id'])
+
         event_body = build_event(c['name'], c['url'], c['start'], c['end'], color_id)
+        event_body['id'] = event_id
         
         if c['id'] in saved:
-            event_id = saved[c['id']]
             if args.dry_run:
                 logger.info(f"[DRY-RUN] Would update: {c['name']} ({c['start'].strftime('%d %b %H:%M')})")
             else:
@@ -92,7 +181,31 @@ def main():
                         eventId=event_id,
                         body=event_body
                     ).execute()
+                    saved[c['id']] = {
+                        "event_id": event_id,
+                        "end": c['end'].isoformat()
+                    }
                     logger.info(f"Updated: {c['name']} ({c['start'].strftime('%d %b %H:%M')})")
+                except HttpError as e:
+                    if e.resp.status == 404:
+                        logger.info(f"Event {event_id} not found in calendar (may have been deleted). Re-inserting...")
+                        try:
+                            # Re-insert using deterministic ID
+                            det_id = generate_google_event_id(c['id'])
+                            event_body['id'] = det_id
+                            created = service.events().insert(
+                                calendarId='primary',
+                                body=event_body
+                            ).execute()
+                            saved[c['id']] = {
+                                "event_id": det_id,
+                                "end": c['end'].isoformat()
+                            }
+                            logger.info(f"Re-inserted: {c['name']} ({c['start'].strftime('%d %b %H:%M')})")
+                        except Exception as insert_err:
+                            logger.error(f"Failed to re-insert {c['name']}: {insert_err}")
+                    else:
+                        logger.error(f"Failed to update {c['name']}: {e}")
                 except Exception as e:
                     logger.error(f"Failed to update {c['name']}: {e}")
             continue
@@ -105,8 +218,30 @@ def main():
                     calendarId='primary',
                     body=event_body
                 ).execute()
-                saved[c['id']] = created['id']
+                saved[c['id']] = {
+                    "event_id": created['id'],
+                    "end": c['end'].isoformat()
+                }
                 logger.info(f"Added: {c['name']} ({c['start'].strftime('%d %b %H:%M')})")
+            except HttpError as e:
+                if e.resp.status == 409:
+                    # 409 Conflict: Event already exists on Google Calendar (e.g. from an out-of-sync run)
+                    logger.info(f"Event for {c['name']} already exists on Google Calendar (409 Conflict). Updating it...")
+                    try:
+                        service.events().update(
+                            calendarId='primary',
+                            eventId=event_id,
+                            body=event_body
+                        ).execute()
+                        saved[c['id']] = {
+                            "event_id": event_id,
+                            "end": c['end'].isoformat()
+                        }
+                        logger.info(f"Updated (resolved conflict): {c['name']} ({c['start'].strftime('%d %b %H:%M')})")
+                    except Exception as update_err:
+                        logger.error(f"Failed to update existing event {c['name']} after conflict: {update_err}")
+                else:
+                    logger.error(f"Failed to add {c['name']}: {e}")
             except Exception as e:
                 logger.error(f"Failed to add {c['name']}: {e}")
 

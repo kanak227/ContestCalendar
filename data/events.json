@@ -1,30 +1,18 @@
 {
-    "cf_2226": "pdgbh1u6ut7ma1fvq0hcssvp0g",
-    "cf_2227": "ugnh4vhsusdlo107dstbhpqja8",
-    "lc_weekly-contest-499": "q21enkf1mdjuf0gopq1qcotres",
-    "cc_DSAMONDAY35": "rqs5db5jlpa4i2efg4qpu5b7u4",
-    "cc_START236": "hqm90nkib6sofh900p0m4l9beo",
-    "lc_weekly-contest-500": "efdtngmncafukbkisdrf64j0rg",
-    "cf_2223": "25pf063g2f5ah9vt6jti16eue0",
-    "cf_2224": "mrem8ei4bf32njfje5c141196o",
-    "cc_DEVWEEKEND48": "vh0cr69jj1l97rvt2aolg5574s",
-    "cc_START237": "k86vdamsub4pkvnlliokenfm5g",
-    "cc_DSAMONDAY001": "2qid83v8nrr9cd18mvece7e0p0",
-    "lc_biweekly-contest-182": "a38nrf1vk7d4o7ub1pb8td0n9c",
-    "lc_weekly-contest-501": "s9bmvgt01dvbkifjn12j268gp8",
-    "cc_DEVWEEKEND49": "sd9lukckdte8nd17v3mrh17or0",
-    "cc_START238": "c03o918pcri7e5tjclndmjqloo",
-    "cf_2228": "hp8t315eg6pkitouau664umjq0",
-    "lc_weekly-contest-502": "27pnvd2l2krp2im7cqij43phnk",
-    "cc_DSAMONDAY002": "934hscfapdr9nili83n725gv4s",
-    "cf_2230": "5v4msro7vg8kkgmgvbsbgfoam8",
-    "cc_DEVWEEKEND50": "7qkv7qaijg5cf1t1bimv5jf8og",
-    "cc_START239": "3vnf4ib8h1uh751lqmf2ci985o",
-    "cf_2231": "v451er1693q63k9av4dsmsf3tg",
-    "cf_2229": "p6db05n38j9eqkl6v35i3he9u4",
-    "lc_biweekly-contest-183": "vk7j31eu4rtlo98uehradh055o",
-    "lc_weekly-contest-503": "fevds3eqlkpotu66utia87taa4",
-    "cc_DSAMONDAY003": "bsm88s0890cktie5ph6dogbnc8",
-    "cc_DEVWEEKEND51": "feg35ptqn281tb9ne2c023p9i0",
-    "cc_START240": "liq4274qiqgprj9tu5vauqkk94"
+    "lc_weekly-contest-503": {
+        "event_id": "fevds3eqlkpotu66utia87taa4",
+        "end": "2026-05-24T09:30:00+05:30"
+    },
+    "cc_DEVWEEKEND51": {
+        "event_id": "feg35ptqn281tb9ne2c023p9i0",
+        "end": "2026-05-25T00:00:00+05:30"
+    },
+    "cc_START240": {
+        "event_id": "liq4274qiqgprj9tu5vauqkk94",
+        "end": "2026-05-27T22:00:00+05:30"
+    },
+    "cf_2232": {
+        "event_id": "da78f548ed02ddda6ed9b829f6e52806",
+        "end": "2026-05-30T22:05:00+05:30"
+    }
 }
