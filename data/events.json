@@ -14,5 +14,13 @@
     "cf_2232": {
         "event_id": "da78f548ed02ddda6ed9b829f6e52806",
         "end": "2026-05-30T22:05:00+05:30"
+    },
+    "lc_weekly-contest-504": {
+        "event_id": "e471edc4e6d35ba64e4f0b229db94e99",
+        "end": "2026-05-31T09:30:00+05:30"
+    },
+    "cc_DSAMONDAY004": {
+        "event_id": "174632ad5da3848bbe756bb878b076be",
+        "end": "2026-05-25T21:00:00+05:30"
     }
 }
