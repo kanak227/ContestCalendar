@@ -1,12 +1,4 @@
 {
-    "lc_biweekly-contest-184": {
-        "event_id": "381f1fe37760642c804d88dbcb04dea0",
-        "end": "2026-06-06T21:30:00+05:30"
-    },
-    "lc_weekly-contest-505": {
-        "event_id": "fe862221f109c233429bb6518eab7b12",
-        "end": "2026-06-07T09:30:00+05:30"
-    },
     "cf_2234": {
         "event_id": "e671967854d84f5ef3c96281533a9bf7",
         "end": "2026-06-07T22:20:00+05:30"
@@ -22,5 +14,9 @@
     "cc_START242": {
         "event_id": "054e0a0c3c79e596cab567c043cd3045",
         "end": "2026-06-10T22:00:00+05:30"
+    },
+    "lc_weekly-contest-506": {
+        "event_id": "94e3b1abeaa718fa51f80a23007ff10c",
+        "end": "2026-06-14T09:30:00+05:30"
     }
 }
