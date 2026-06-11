@@ -1,8 +1,4 @@
 {
-    "cc_START242": {
-        "event_id": "054e0a0c3c79e596cab567c043cd3045",
-        "end": "2026-06-10T22:00:00+05:30"
-    },
     "lc_weekly-contest-506": {
         "event_id": "94e3b1abeaa718fa51f80a23007ff10c",
         "end": "2026-06-14T09:30:00+05:30"
@@ -14,5 +10,13 @@
     "cc_DSAMONDAY007": {
         "event_id": "c2aa71ec06ba1b9a022d33b65d03a302",
         "end": "2026-06-15T21:00:00+05:30"
+    },
+    "cc_DEVWEEKEND54": {
+        "event_id": "dd0f32bfa7bdaf8560121efd93e08bfa",
+        "end": "2026-06-15T00:00:00+05:30"
+    },
+    "cc_START243": {
+        "event_id": "b3d0676d1150ac41f207b2af05f72405",
+        "end": "2026-06-17T22:00:00+05:30"
     }
 }
