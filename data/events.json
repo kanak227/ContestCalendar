@@ -1,8 +1,4 @@
 {
-    "lc_weekly-contest-506": {
-        "event_id": "94e3b1abeaa718fa51f80a23007ff10c",
-        "end": "2026-06-14T09:30:00+05:30"
-    },
     "cc_DSAMONDAY007": {
         "event_id": "c2aa71ec06ba1b9a022d33b65d03a302",
         "end": "2026-06-15T21:00:00+05:30"
@@ -18,5 +14,13 @@
     "cf_2237": {
         "event_id": "622e1c3549e57b50dc7af230b4444568",
         "end": "2026-06-18T23:05:00+05:30"
+    },
+    "lc_biweekly-contest-185": {
+        "event_id": "64cd4831752acf302ea5ff03ca9a7ddc",
+        "end": "2026-06-20T21:30:00+05:30"
+    },
+    "lc_weekly-contest-507": {
+        "event_id": "bf09a135432be7190beb1ca84d773c4b",
+        "end": "2026-06-21T09:30:00+05:30"
     }
 }
