@@ -14,5 +14,9 @@
     "cc_START244": {
         "event_id": "19e440be8a8bc80c278dd9b4af77d497",
         "end": "2026-06-24T22:00:00+05:30"
+    },
+    "cc_DSAMONDAY008": {
+        "event_id": "33c2af5e34c022e6e3faab17a0bb49c3",
+        "end": "2026-06-22T22:00:00+05:30"
     }
 }
