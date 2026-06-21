@@ -1,12 +1,4 @@
 {
-    "lc_biweekly-contest-185": {
-        "event_id": "64cd4831752acf302ea5ff03ca9a7ddc",
-        "end": "2026-06-20T21:30:00+05:30"
-    },
-    "lc_weekly-contest-507": {
-        "event_id": "bf09a135432be7190beb1ca84d773c4b",
-        "end": "2026-06-21T09:30:00+05:30"
-    },
     "cc_DEVWEEKEND55": {
         "event_id": "191201e86a4afee7fb8b6f30e7ce751d",
         "end": "2026-06-22T00:00:00+05:30"
@@ -18,5 +10,17 @@
     "cc_DSAMONDAY008": {
         "event_id": "33c2af5e34c022e6e3faab17a0bb49c3",
         "end": "2026-06-22T22:00:00+05:30"
+    },
+    "cf_2239": {
+        "event_id": "402f040414640a1f3614a2a4c3b4522c",
+        "end": "2026-06-27T22:35:00+05:30"
+    },
+    "cf_2240": {
+        "event_id": "68c51596870fe7ccb23b9d96e66d02a6",
+        "end": "2026-06-27T22:35:00+05:30"
+    },
+    "lc_weekly-contest-508": {
+        "event_id": "26c55767f503f4fcf05f586fe53db6e6",
+        "end": "2026-06-28T09:30:00+05:30"
     }
 }
