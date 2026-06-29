@@ -1,15 +1,7 @@
 {
-    "cf_2238": {
-        "event_id": "ea85a6c7b2a3286249d307f812fb882c",
-        "end": "2026-06-28T22:05:00+05:30"
-    },
     "cf_2241": {
         "event_id": "8ce9f99cb889484daae890dcccd34cc2",
         "end": "2026-06-30T22:20:00+05:30"
-    },
-    "cc_DEVWEEKEND56": {
-        "event_id": "259712257a5367dd5191d650cb39bd5b",
-        "end": "2026-06-29T00:00:00+05:30"
     },
     "cc_DSAMONDAY009": {
         "event_id": "4a18b55ab09c7a186883ba1115e1651d",
