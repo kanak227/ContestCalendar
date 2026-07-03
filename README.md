@@ -4,15 +4,15 @@
 [![Google Calendar](https://img.shields.io/badge/API-Google%20Calendar-brightgreen)](https://developers.google.com/calendar)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Automatically synchronize upcoming competitive programming contests from **Codeforces**, **LeetCode**, and **CodeChef** directly to your Google Calendar. Never miss a round again!
+Automatically synchronize upcoming competitive programming contests from **Codeforces**, **LeetCode**, **CodeChef**, and **AtCoder** directly to your Google Calendar. Never miss a round again!
 
 ---
 
 ## Features
 
-- **Multi-Platform Support**: Aggregates contests from the most popular CP platforms.
+- **Multi-Platform Support**: Aggregates contests from the most popular CP platforms, including AtCoder.
 - **Smart Sync**: Automatically updates existing events if their time or duration changes.
-- **Color-Coded Events**: Distinct colors for each platform (Blue for CF, Yellow for LC, Red for CC).
+- **Color-Coded Events**: Distinct colors for each platform (CF, LC, CC, and AtCoder).
 - **Custom Reminders**: predefined 10-minute popup reminders for every contest.
 - **Cross-Platform Automation**: Ready-to-use scripts for Linux, macOS, and Windows.
 - **Detailed Logging**: Every sync action is documented in `sync.log`.
@@ -28,6 +28,7 @@ graph TD
     B --> D[Codeforces API]
     B --> E[LeetCode GraphQL]
     B --> F[CodeChef API]
+    B --> I[AtCoder API]
     C --> G[Google Calendar API]
     A --> H[(data/events.json)]
 ```
@@ -87,6 +88,9 @@ This will open your browser. Once authorized, a `token.json` file will be create
 ---
 
 ## Configuration
+
+AtCoder contest feed: `https://kenkoooo.com/atcoder/resources/contests.json`
+
 
 | Argument | Description | Default |
 |----------|-------------|---------|

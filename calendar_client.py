@@ -45,7 +45,7 @@ def get_calendar_service(creds):
     """Build and return the Google Calendar service."""
     return build('calendar', 'v3', credentials=creds)
 
-def build_event(summary, description, start, end, color_id=None, timezone='Asia/Kolkata'):
+def build_event(summary, description, start, end, color_id=None, timezone='Asia/Kolkata', contest_id=None):
     """Build a Google Calendar event body."""
     event = {
         'summary': summary,
@@ -67,4 +67,10 @@ def build_event(summary, description, start, end, color_id=None, timezone='Asia/
     }
     if color_id:
         event['colorId'] = color_id
+    if contest_id:
+        event['extendedProperties'] = {
+            'private': {
+                'contest_id': contest_id
+            }
+        }
     return event

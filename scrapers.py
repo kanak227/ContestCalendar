@@ -138,3 +138,44 @@ def fetch_codechef(days_limit=7):
 
     contests_list.sort(key=lambda x: x['start'])
     return contests_list
+
+def fetch_atcoder(days_limit=7):
+    """Fetch upcoming contests from AtCoder."""
+    url = "https://kenkoooo.com/atcoder/resources/contests.json"
+    try:
+        response = requests.get(url, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+    except Exception as e:
+        logger.error(f"Failed to fetch AtCoder contests: {e}")
+        return []
+
+    now = datetime.now(timezone.utc)
+    limit = now + timedelta(days=days_limit)
+
+    contests = []
+    for c in data:
+        try:
+            start_utc = datetime.fromtimestamp(c['start_epoch_second'], tz=timezone.utc)
+
+            if not (now <= start_utc <= limit):
+                continue
+
+            contest_id = c['id']
+            start = start_utc.astimezone(IST)
+            end = start + timedelta(seconds=int(c['duration_second']))
+
+            contests.append({
+                "id": f"ac_{contest_id}",
+                "name": c['title'],
+                "url": f"https://atcoder.jp/contests/{contest_id}",
+                "start": start,
+                "end": end
+            })
+        except (ValueError, KeyError, TypeError) as e:
+            logger.warning(f"Skipping malformed AtCoder contest data: {e}")
+            continue
+
+    contests.sort(key=lambda x: x['start'])
+    return contests
+
