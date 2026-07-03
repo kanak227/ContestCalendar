@@ -1,5 +1,6 @@
 import requests
 import logging
+from html.parser import HTMLParser
 from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
@@ -139,36 +140,119 @@ def fetch_codechef(days_limit=7):
     contests_list.sort(key=lambda x: x['start'])
     return contests_list
 
+
+class AtCoderUpcomingParser(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.rows = []
+        self._in_upcoming = False
+        self._upcoming_div_depth = 0
+        self._in_row = False
+        self._in_cell = False
+        self._in_contest_link = False
+        self._cell_parts = []
+        self._row_cells = []
+        self._contest_href = None
+        self._contest_title_parts = []
+
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == "div" and attrs.get("id") == "contest-table-upcoming":
+            self._in_upcoming = True
+            self._upcoming_div_depth = 1
+            return
+
+        if not self._in_upcoming:
+            return
+
+        if tag == "div":
+            self._upcoming_div_depth += 1
+        elif tag == "tr":
+            self._in_row = True
+            self._row_cells = []
+            self._contest_href = None
+            self._contest_title_parts = []
+        elif self._in_row and tag == "td":
+            self._in_cell = True
+            self._cell_parts = []
+        elif self._in_cell and tag == "a" and attrs.get("href", "").startswith("/contests/"):
+            self._contest_href = attrs["href"]
+            self._in_contest_link = True
+
+    def handle_endtag(self, tag):
+        if not self._in_upcoming:
+            return
+
+        if tag == "a" and self._in_contest_link:
+            self._in_contest_link = False
+        elif tag == "td" and self._in_cell:
+            self._row_cells.append(" ".join("".join(self._cell_parts).split()))
+            self._in_cell = False
+        elif tag == "tr" and self._in_row:
+            if self._contest_href and len(self._row_cells) >= 3:
+                self.rows.append({
+                    "start": self._row_cells[0],
+                    "title": " ".join("".join(self._contest_title_parts).split()),
+                    "href": self._contest_href,
+                    "duration": self._row_cells[2],
+                })
+            self._in_row = False
+        elif tag == "div":
+            self._upcoming_div_depth -= 1
+            if self._upcoming_div_depth <= 0:
+                self._in_upcoming = False
+
+    def handle_data(self, data):
+        if not self._in_cell:
+            return
+        self._cell_parts.append(data)
+        if self._in_contest_link:
+            self._contest_title_parts.append(data)
+
+
+def parse_atcoder_duration(value):
+    hours, minutes = value.strip().split(":", 1)
+    return timedelta(hours=int(hours), minutes=int(minutes))
+
+
 def fetch_atcoder(days_limit=7):
     """Fetch upcoming contests from AtCoder."""
-    url = "https://kenkoooo.com/atcoder/resources/contests.json"
+    url = "https://atcoder.jp/contests/?lang=en"
+    headers = {"User-Agent": "Mozilla/5.0"}
     try:
-        response = requests.get(url, timeout=10)
+        response = requests.get(url, headers=headers, timeout=10)
         response.raise_for_status()
-        data = response.json()
     except Exception as e:
         logger.error(f"Failed to fetch AtCoder contests: {e}")
+        return []
+
+    parser = AtCoderUpcomingParser()
+    try:
+        parser.feed(response.text)
+    except Exception as e:
+        logger.error(f"Failed to parse AtCoder contests: {e}")
         return []
 
     now = datetime.now(timezone.utc)
     limit = now + timedelta(days=days_limit)
 
     contests = []
-    for c in data:
+    for c in parser.rows:
         try:
-            start_utc = datetime.fromtimestamp(c['start_epoch_second'], tz=timezone.utc)
+            start_jst = datetime.strptime(c["start"], "%Y-%m-%d %H:%M:%S%z")
+            start_utc = start_jst.astimezone(timezone.utc)
 
             if not (now <= start_utc <= limit):
                 continue
 
-            contest_id = c['id']
+            contest_id = c["href"].rstrip("/").split("/")[-1]
             start = start_utc.astimezone(IST)
-            end = start + timedelta(seconds=int(c['duration_second']))
+            end = start + parse_atcoder_duration(c["duration"])
 
             contests.append({
                 "id": f"ac_{contest_id}",
-                "name": c['title'],
-                "url": f"https://atcoder.jp/contests/{contest_id}",
+                "name": c["title"],
+                "url": f"https://atcoder.jp{c['href']}",
                 "start": start,
                 "end": end
             })

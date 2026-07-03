@@ -1,4 +1,12 @@
 {
+    "cf_2242": {
+        "event_id": "fded5a7be2b6478a125439945a4392b0",
+        "end": "2026-07-06T22:05:00+05:30"
+    },
+    "cf_2244": {
+        "event_id": "9951aec2f016c146dfbc84e2d6e6f748",
+        "end": "2026-07-10T22:20:00+05:30"
+    },
     "lc_biweekly-contest-186": {
         "event_id": "2ad9fc991b72dcc305a9133b81b81081",
         "end": "2026-07-04T21:30:00+05:30"
@@ -6,14 +14,6 @@
     "lc_weekly-contest-509": {
         "event_id": "063b053ff56405a41cc4b6372d219013",
         "end": "2026-07-05T09:30:00+05:30"
-    },
-    "cf_2242": {
-        "event_id": "fded5a7be2b6478a125439945a4392b0",
-        "end": "2026-07-06T22:05:00+05:30"
-    },
-    "cc_DEVWEEKEND57": {
-        "event_id": "4585986a5754c103bda08be2099df4e6",
-        "end": "2026-07-06T00:00:00+05:30"
     },
     "cc_DSAMONDAY010": {
         "event_id": "2465cb76501d1936d965d22ce4499e45",
@@ -23,8 +23,20 @@
         "event_id": "fb266cc072c8006a4455d180f485d725",
         "end": "2026-07-08T22:00:00+05:30"
     },
-    "cf_2244": {
-        "event_id": "9951aec2f016c146dfbc84e2d6e6f748",
-        "end": "2026-07-10T22:20:00+05:30"
+    "ac_abc465": {
+        "event_id": "b24e3ccba5528beed4e5adce99884e7c",
+        "end": "2026-07-04T19:10:00+05:30"
+    },
+    "ac_awtf2026heuristic": {
+        "event_id": "f3be3d165c821468f2942d78d1a0c740",
+        "end": "2026-07-08T15:30:00+05:30"
+    },
+    "ac_awtf2026algo": {
+        "event_id": "ff7c351383ff544b467da830d0df93c9",
+        "end": "2026-07-09T14:30:00+05:30"
+    },
+    "ac_awtf2026algo-open": {
+        "event_id": "8b8a8439ec8cf8aff0727c82d6f7b92a",
+        "end": "2026-07-09T14:30:00+05:30"
     }
 }

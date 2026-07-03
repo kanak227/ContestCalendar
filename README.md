@@ -89,7 +89,7 @@ This will open your browser. Once authorized, a `token.json` file will be create
 
 ## Configuration
 
-AtCoder contest feed: `https://kenkoooo.com/atcoder/resources/contests.json`
+AtCoder contest source: `https://atcoder.jp/contests/?lang=en`
 
 
 | Argument | Description | Default |
