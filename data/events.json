@@ -3,14 +3,6 @@
         "event_id": "9951aec2f016c146dfbc84e2d6e6f748",
         "end": "2026-07-14T22:20:00+05:30"
     },
-    "cc_START246": {
-        "event_id": "fb266cc072c8006a4455d180f485d725",
-        "end": "2026-07-08T22:00:00+05:30"
-    },
-    "ac_awtf2026heuristic": {
-        "event_id": "f3be3d165c821468f2942d78d1a0c740",
-        "end": "2026-07-08T15:30:00+05:30"
-    },
     "ac_awtf2026algo": {
         "event_id": "ff7c351383ff544b467da830d0df93c9",
         "end": "2026-07-09T14:30:00+05:30"
@@ -38,5 +30,13 @@
     "cc_DEVWEEKEND58": {
         "event_id": "7dca88cb6fec33604942c9ac7bffa553",
         "end": "2026-07-13T00:00:00+05:30"
+    },
+    "cc_DSAMONDAY011": {
+        "event_id": "d00944112b9e9da127a2f6bb65fb7270",
+        "end": "2026-07-13T22:00:00+05:30"
+    },
+    "cc_START247": {
+        "event_id": "1a82a82cfea40a0ee48f36556b67306f",
+        "end": "2026-07-15T22:00:00+05:30"
     }
 }
