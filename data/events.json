@@ -1,16 +1,4 @@
 {
-    "lc_weekly-contest-511": {
-        "event_id": "fffec13ac8a8b8b8293abd11e95d95ae",
-        "end": "2026-07-19T09:30:00+05:30"
-    },
-    "ac_arc225": {
-        "event_id": "c0dc329e35e6edc4837f1bd5af12ffd2",
-        "end": "2026-07-19T19:30:00+05:30"
-    },
-    "cc_DEVWEEKEND59": {
-        "event_id": "d6927950ed4aed85cb5de61d77dad6b0",
-        "end": "2026-07-20T00:00:00+05:30"
-    },
     "cc_DSAMONDAY012": {
         "event_id": "dc7d1734c28f7ae9ae698ea8f54d9356",
         "end": "2026-07-20T22:00:00+05:30"
@@ -26,5 +14,13 @@
     "ac_abc468": {
         "event_id": "e4d54b761fd13fc7ffab1976675c71d2",
         "end": "2026-07-25T19:10:00+05:30"
+    },
+    "cf_2249": {
+        "event_id": "1a0942bb60f8a71050ef8d55b20aa9c4",
+        "end": "2026-07-26T22:35:00+05:30"
+    },
+    "cf_2250": {
+        "event_id": "162aebf16dd1ee198807ca1acabb536b",
+        "end": "2026-07-26T22:35:00+05:30"
     }
 }
