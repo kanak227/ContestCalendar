@@ -18,5 +18,9 @@
     "cf_2250": {
         "event_id": "162aebf16dd1ee198807ca1acabb536b",
         "end": "2026-07-26T22:35:00+05:30"
+    },
+    "cc_DEVWEEKEND60": {
+        "event_id": "a82ff98b0c9aa26e81965d9a317d831e",
+        "end": "2026-07-27T00:00:00+05:30"
     }
 }
