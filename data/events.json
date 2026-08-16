@@ -3,14 +3,6 @@
         "event_id": "b724764201e50adc235998ac41e24d50",
         "end": "2026-08-28T16:30:00+05:30"
     },
-    "lc_biweekly-contest-189": {
-        "event_id": "9df01f93fc7a752bdddf57f4a4220a7d",
-        "end": "2026-08-15T21:30:00+05:30"
-    },
-    "ac_abc471": {
-        "event_id": "1cbf4450095298e09cbc17840186d122",
-        "end": "2026-08-15T19:10:00+05:30"
-    },
     "lc_weekly-contest-515": {
         "event_id": "4bc55e7d40db3b84109576d698bc8e41",
         "end": "2026-08-16T09:30:00+05:30"
@@ -26,5 +18,9 @@
     "cc_DSAMONDAY016": {
         "event_id": "25eb2fcfec937ef4f14dc1db3af23bca",
         "end": "2026-08-17T22:00:00+05:30"
+    },
+    "ac_abc472": {
+        "event_id": "d38d57b133c2ee91326a6b6f27ec0d46",
+        "end": "2026-08-22T19:10:00+05:30"
     }
 }
