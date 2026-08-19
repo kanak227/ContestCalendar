@@ -10,5 +10,13 @@
     "lc_weekly-contest-516": {
         "event_id": "42f9e32705018c2031fea691cf17b498",
         "end": "2026-08-23T09:30:00+05:30"
+    },
+    "cc_START252": {
+        "event_id": "5973f5c7e18c6253b5defb22879160cc",
+        "end": "2026-08-19T22:00:00+05:30"
+    },
+    "cc_PLACEPREP04": {
+        "event_id": "5581bfaa16fc66ca4823bb91b7c7f1e2",
+        "end": "2026-08-22T02:00:42+05:30"
     }
 }
