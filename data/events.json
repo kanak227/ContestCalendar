@@ -11,12 +11,16 @@
         "event_id": "42f9e32705018c2031fea691cf17b498",
         "end": "2026-08-23T09:30:00+05:30"
     },
-    "cc_START252": {
-        "event_id": "5973f5c7e18c6253b5defb22879160cc",
-        "end": "2026-08-19T22:00:00+05:30"
-    },
     "cc_PLACEPREP04": {
         "event_id": "5581bfaa16fc66ca4823bb91b7c7f1e2",
         "end": "2026-08-22T02:00:42+05:30"
+    },
+    "cc_DSAMONDAY017": {
+        "event_id": "7eab568eb7f327039d38304f6d9ba2d7",
+        "end": "2026-08-24T22:00:00+05:30"
+    },
+    "cc_START253": {
+        "event_id": "b062cc8bfecb6807ba69a7ba417deed7",
+        "end": "2026-08-26T22:00:00+05:30"
     }
 }
