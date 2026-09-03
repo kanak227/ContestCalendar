@@ -1,8 +1,4 @@
 {
-    "cc_START254": {
-        "event_id": "2f72bdab743eaf17ed2601f0727926f6",
-        "end": "2026-09-02T22:00:00+05:30"
-    },
     "cf_2259": {
         "event_id": "65a79fe439274bc8f0cfb89cc75bf53b",
         "end": "2026-09-05T22:20:00+05:30"
@@ -22,5 +18,17 @@
     "cf_2260": {
         "event_id": "3f8b5af114abeb43c94cf69ea66ea834",
         "end": "2026-09-08T22:05:00+05:30"
+    },
+    "cc_PLACEPREP06": {
+        "event_id": "a82f539ca9bb9c106dfa9398b0e1be10",
+        "end": "2026-09-05T02:30:15+05:30"
+    },
+    "cc_DSAMONDAY019": {
+        "event_id": "71cbdb36ed71c284b653a8e1dbff8fdb",
+        "end": "2026-09-07T22:00:06+05:30"
+    },
+    "cc_START255": {
+        "event_id": "cecd6f2ac721802d5ce65bb927914107",
+        "end": "2026-09-09T22:00:00+05:30"
     }
 }
