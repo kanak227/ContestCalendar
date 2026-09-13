@@ -1,23 +1,7 @@
 {
-    "cf_2262": {
-        "event_id": "3f5da45a3387ad46de424bf03283e77e",
-        "end": "2026-09-12T23:05:00+05:30"
-    },
-    "cf_2263": {
-        "event_id": "7e5c4b5ec456ffaa219c26de76f986a0",
-        "end": "2026-09-12T23:05:00+05:30"
-    },
-    "lc_biweekly-contest-191": {
-        "event_id": "45fab4c31718ce1a14ca418f70bf8b69",
-        "end": "2026-09-12T21:30:00+05:30"
-    },
     "lc_weekly-contest-519": {
         "event_id": "757f9f6ab9800e3999b13b34c4426d4e",
         "end": "2026-09-13T09:30:00+05:30"
-    },
-    "ac_abc475": {
-        "event_id": "34d51a7fd5829fe885ec3c3ac660d604",
-        "end": "2026-09-12T19:10:00+05:30"
     },
     "cf_2264": {
         "event_id": "fbdf1917e06d00374ed97dc51456efcc",
@@ -34,5 +18,13 @@
     "cc_START256": {
         "event_id": "5804040a569e90b22425ee6fba95fcd7",
         "end": "2026-09-16T22:00:00+05:30"
+    },
+    "lc_weekly-contest-520": {
+        "event_id": "b5b4e45db24ec548b69643c40abf6c0f",
+        "end": "2026-09-20T09:30:00+05:30"
+    },
+    "ac_abc476": {
+        "event_id": "4d9a1a20ae6599e247f79862a648c1c3",
+        "end": "2026-09-19T19:10:00+05:30"
     }
 }
