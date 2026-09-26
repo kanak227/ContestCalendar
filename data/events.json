@@ -1,8 +1,4 @@
 {
-    "cf_2267": {
-        "event_id": "210376c4f7bce5f30fea3caaa4cb04a6",
-        "end": "2026-09-25T22:20:00+05:30"
-    },
     "ac_ahc072": {
         "event_id": "0a7635cb0f2958ec7fe54e8c3399c9f5",
         "end": "2026-10-05T15:30:00+05:30"
@@ -30,10 +26,6 @@
     "ac_agc078": {
         "event_id": "1457875c89ca9304b73c6f05c269b586",
         "end": "2026-09-27T21:00:00+05:30"
-    },
-    "cc_PLACEPREP09": {
-        "event_id": "ce2cacfbcc0c0bf37388b72723eb6266",
-        "end": "2026-09-26T02:30:31+05:30"
     },
     "cc_DSAMONDAY022": {
         "event_id": "39dc77f6b55c50d34a4288beeb306ca6",
