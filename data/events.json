@@ -1,8 +1,4 @@
 {
-    "lc_weekly-contest-524": {
-        "event_id": "9ee17e6accc0060f527c28a69a9e38a9",
-        "end": "2026-10-18T09:30:00+05:30"
-    },
     "cc_DSAMONDAY025": {
         "event_id": "2ecbe28d49c6c1a86658341a6ff06878",
         "end": "2026-10-19T22:00:00+05:30"
@@ -26,5 +22,9 @@
     "ac_abc481": {
         "event_id": "6f87ff851993bf288ae42ffc6ae7aa44",
         "end": "2026-10-24T19:10:00+05:30"
+    },
+    "ac_arc233": {
+        "event_id": "c53e35dda071e05dad018cf165dda60c",
+        "end": "2026-10-25T20:00:00+05:30"
     }
 }
